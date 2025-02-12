@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_prepare_argv.c                                  :+:      :+:    :+:   */
+/*   ft_special_cmd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 15:09:11 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/12 17:45:21 by sikunne          ###   ########.fr       */
+/*   Created: 2025/02/12 17:59:55 by sikunne           #+#    #+#             */
+/*   Updated: 2025/02/12 18:40:30 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**ft_prepare_argv(char *inp)
+// runs builtin commands like exit, cd, unset
+// returns 0-255 if programm should close with that code
+// returns -1 if programm should continue
+int	ft_special_cmd(char *inp)
 {
-	int		i;
-	char	**ret;
+	int	i;
 
-	i = -1;
-	ret = ft_split_quot_ex(inp, ' ');
-	while (ret[++i] != NULL)
-		printf("ARG: %s\n", ret[i]);
-	return (ret);
+	i = 0;
+	i = ft_skip_spaces(i, inp);
+	if (ft_strncmp(&inp[i], "exit", 4) == 0)
+		return (0);
+	return (-1);
 }

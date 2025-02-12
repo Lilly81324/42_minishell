@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:46:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/12 16:27:05 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/12 18:14:12 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_loop(char *envp[])
 			return (0);
 		status = ft_handle_input(input, envp);
 		ft_null(input);
-		if (status != 0)
+		if (status >= 0)
 			return (status);
 	}
 	return (0);

@@ -19,6 +19,10 @@ ft_nullb.c \
 ft_prepare_argv.c \
 ft_split_quot_ex.c \
 ft_prepare_cmd.c \
+ft_special_cmd.c \
+ft_regular_cmd.c \
+ft_check_special.c \
+ft_skip_spaces.c \
 )
 SRC_MAIN = $(SRC_DIR)aa_main.c
 OBJ_MAIN = $(OBJ_DIR)aa_main.o

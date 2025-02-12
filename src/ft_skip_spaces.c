@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_prepare_argv.c                                  :+:      :+:    :+:   */
+/*   ft_skip_spaces.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 15:09:11 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/12 17:45:21 by sikunne          ###   ########.fr       */
+/*   Created: 2025/02/12 18:32:26 by sikunne           #+#    #+#             */
+/*   Updated: 2025/02/12 18:34:20 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**ft_prepare_argv(char *inp)
+int	ft_skip_spaces(int i, char *str)
 {
-	int		i;
-	char	**ret;
-
-	i = -1;
-	ret = ft_split_quot_ex(inp, ' ');
-	while (ret[++i] != NULL)
-		printf("ARG: %s\n", ret[i]);
-	return (ret);
+	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' \
+		|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
+	i++;
+	return (i);
 }

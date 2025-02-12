@@ -6,26 +6,23 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:52:25 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/12 15:00:17 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/12 18:19:19 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// return values: -1 for continue 0-255 for  
+// certain return values should stop the programm and return that value
+// -1 if continue
 int	ft_handle_input(char *inp, char *envp[])
 {
-	char	*path;
-	int		exit_status;
+	int special;
 
-	path = ft_get_path(envp, inp);
-	if (path == NULL)
-	{
-		printf(INVALID_COMMAND);
-		return (1);
-	}
+	special = ft_check_special(inp);
+	if (special == 1)
+		return (ft_special_cmd(inp));
 	else
-		printf("Command found: %s\n", path);
-	exit_status = ft_prepare_cmd(path, inp, envp);
-	ft_null(path);
+		return (ft_regular_cmd(inp, envp));
 	return (0);
 }
