@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_char_arr_arr.c                             :+:      :+:    :+:   */
+/*   ft_loop.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 17:02:09 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/11 17:09:15 by sikunne          ###   ########.fr       */
+/*   Created: 2025/02/11 17:46:42 by sikunne           #+#    #+#             */
+/*   Updated: 2025/02/12 16:27:05 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// properly frees an array of arrays of characters
-// the older brother of ft_split
-void	ft_free_char_arr_arr(char **target)
+int	ft_loop(char *envp[])
 {
-	int	i;
+	char	*input;
+	int		status;
 
-	i = 0;
-	if (target == NULL)
-		return ;
-	while (target[i] != NULL)
+	while (1)
 	{
-		free(target[i]);
-		target[i] = NULL;
-		i++;
+		input = readline("> ");
+		if (input == NULL) //Ctrl+D -> should exit
+			return (0);
+		status = ft_handle_input(input, envp);
+		ft_null(input);
+		if (status != 0)
+			return (status);
 	}
-	free(target);
-	target = NULL;
+	return (0);
 }
+
+// CTRL+C -> new line
+// CTRL+D -> exit

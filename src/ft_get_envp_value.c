@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_loop.c                                          :+:      :+:    :+:   */
+/*   ft_get_envp_value.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/11 17:46:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/11 18:31:43 by sikunne          ###   ########.fr       */
+/*   Created: 2025/02/11 17:05:52 by sikunne           #+#    #+#             */
+/*   Updated: 2025/02/12 16:26:47 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern void rl_cleanup_after_signal(void);
-
-int	ft_loop(int argc, char *argv[], char *envp[])
+// returns part of envp variable starting with <find>
+// returns NULL if not found
+char	*ft_get_envp_value(char *envp[], const char *find)
 {
-	char	*input;
-	int		status;
-	
-	if (argc == 2 && argv == NULL)
-		return (1);
-	while (1)
+	size_t	len;
+	int		i;
+
+	len = ft_strlen(find);
+	i = 0;
+	while (envp[i] != NULL)
 	{
-		input = readline("> ");
-		if (input == NULL)
-		{
-			return (0);
-		}
-		status = ft_handle_input(input, envp);
-		free(input);
-		input = NULL;
-		if (status != 0)
-		{
-			return (status);
-		}
+		if (ft_strncmp(envp[i], find, len) != 0)
+			return (envp[i] + len);
+		i++;
 	}
-	return (0);
+	return (envp[i]);
 }

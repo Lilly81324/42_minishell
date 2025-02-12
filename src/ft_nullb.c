@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_envp_value.c                                :+:      :+:    :+:   */
+/*   ft_nullb.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/11 17:05:52 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/11 18:00:00 by sikunne          ###   ########.fr       */
+/*   Created: 2025/02/12 15:05:07 by sikunne           #+#    #+#             */
+/*   Updated: 2025/02/12 16:27:14 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// returns part of envp variable starting with <find>
-// returns NULL if not found
-char *ft_get_envp_value(char *envp[], const char *find)
+// frees a 2d array that end with its last element being null
+void	ft_nullb(char **ptr)
 {
-	size_t	len;
-	int		i;
+	int	i;
 
-	len = ft_strlen(find);
-	i = 0;
-	while (envp[i] != NULL)
-	{
-		if (ft_strncmp(envp[i], find, len) != 0)
-			return (envp[i] + len);
-		i++;
-	}
-	return (envp[i]);
+	i = -1;
+	if (ptr == NULL)
+		return ;
+	while (ptr[++i] != NULL)
+		ft_null(ptr[i]);
+	ft_null(ptr);
 }

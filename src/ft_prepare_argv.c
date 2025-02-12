@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aa_main.c                                          :+:      :+:    :+:   */
+/*   ft_prepare_argv.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/11 18:09:17 by sikunne          ###   ########.fr       */
+/*   Created: 2025/02/12 15:09:11 by sikunne           #+#    #+#             */
+/*   Updated: 2025/02/12 16:27:22 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char *argv[], char *envp[])
+char	**ft_prepare_argv(char *inp)
 {
-	if (argc == 2)
-		printf("%s", argv[1]);
-	return (ft_loop(argc, argv, envp));
+	char	**ret;
+
+	ret = ft_split_quot_ex(inp, ' ');
+	return (ret);
 }
