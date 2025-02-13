@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_quot_ex.c                                 :+:      :+:    :+:   */
+/*   ft_split_quot_inc.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:40:45 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/12 16:16:56 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/13 17:43:14 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,22 @@
 
 // moves until it reaches end or opt
 // returns the index of that character
-// returns -1 if character not found
-static int	move_until(char const *s, int i, char opt)
+// returns -1 if character not found (quotation opened and not closed)
+static int	move_until(char *s, int i, char opt)
 {
 	i++;
 	while (s[i] != opt && s[i] != '\0')
 		i++;
 	if (s[i] == '\0')
 	{
-		perror("Error, quotation mark not closed properly");
 		return (-1);
 	}
-	i++;
 	return (i);
 }
 
 // returns how many "words" are in a string
 // returns -1 if error
-static int	get_sets(char const *s, char c)
+static int	get_sets(char *s)
 {
 	int		i;
 	int		strings;
@@ -40,21 +38,19 @@ static int	get_sets(char const *s, char c)
 	strings = 0;
 	while (s[i] != '\0')
 	{
-		while (s[i] == c)
-			i++;
-		if (s[i] != '\0' && s[i] != c)
+		ft_skip_spaces(&i, s);
+		if (s[i] != '\0')
 			strings++;
-		if (s[i] == '\'')
-			i = move_until(s, i, '\'');
-		else if (s[i] == '\"')
-			i = move_until(s, i, '\"');
-		else if (s[i] != c)
+		while (s[i] != '\0' && ft_c_in_s(SPACES, s[i]) == 0)
 		{
-			while (s[i] != '\0' && s[i] != c && s[i] != '\'' && s[i] != '\"')
-				i++;
+			if (s[i] == '\'')
+				i = move_until(s, i, '\'');
+			else if (s[i] == '\"')
+				i = move_until(s, i, '\"');
+			if (i < 0)
+				return (-1);
+			i++;
 		}
-		if (i < 0)
-			return (-1);
 	}
 	return (strings);
 }
@@ -62,38 +58,40 @@ static int	get_sets(char const *s, char c)
 // called at the first character of a string
 // gives back the string, or NULL if error
 // sets i to the index of the first occurence of c after that string
-static char	*get_string(char const *s, int *i, char c, char stop)
+static char	*get_string(char *s, int *i)
 {
 	int		start;
 	char	*str;
 	int		j;
 
-	if (s[*i] == '\'' || s[*i] == '\"')
-		(*i)++;
 	start = *i;
-	j = -1;
-	if (stop == '\'' || stop == '\"')
+	j = 0;
+	while (s[*i] != '\0' && ft_c_in_s(SPACES, s[*i]) == 0)
 	{
-		while (s[*i] != '\0' && s[*i] != stop)
-			(*i)++;
-	}
-	else
-	{
-		while (s[*i] != '\0' && s[*i] != c && s[*i] != '\'' && s[*i] != '\"')
-			(*i)++;
+		if (s[*i] == '\'')
+			*i = move_until(s, *i, '\'');
+		else if (s[*i] == '\"')
+			*i = move_until(s, *i, '\"');
+		if (*i < 0)
+			return (NULL);
+		(*i)++;
 	}
 	str = (char *)malloc((((*i) - start) + 1) * sizeof(char));
-	while (++j < ((*i) - start))
+	while (j < ((*i) - start))
+	{
 		str[j] = s[start + j];
+		j++;
+	}
 	str[j] = '\0';
-	if (stop == '\'' || stop == '\"')
-		(*i)++;
 	return (str);
 }
 
-// Handles allocating the strings per word
-/// returns -1 if error
-static int	ft_splitter(char const *s, char c, char **result)
+// turns a source string into seperate strings containing each "word"
+// a "word" is defined as being between the char c, start of string
+// or end of string
+// compared to ft_split, this function properly handles quotes
+// returns -1 if error
+static int	ft_splitter(char *s, char **result)
 {
 	int	arrpos;
 	int	i;
@@ -102,12 +100,11 @@ static int	ft_splitter(char const *s, char c, char **result)
 	i = 0;
 	while (s[i] != '\0')
 	{
-		while (s[i] == c)
-			i++;
-		if (s[i] != '\0' && s[i] != c)
+		ft_skip_spaces(&i, s);
+		if (s[i] != '\0')
 		{
-			result[arrpos] = get_string(s, &i, c, s[i]);
-			if (result[arrpos] == NULL && s[i] != '\0')
+			result[arrpos] = get_string(s, &i);
+			if (result[arrpos] == NULL)
 				return (-1);
 			arrpos++;
 		}
@@ -117,33 +114,26 @@ static int	ft_splitter(char const *s, char c, char **result)
 }
 
 // Version of ft_split that respect things in quotes
-// excludes quotes from string and views quotes as seperator
-// "abc'def' ghi" -> abc, def, ghi
+// includes quotes from string and views everything as part of word
+// "abc'def' ghi" -> abc'def', ghi
 // This function is the central function, it uses...
 // ...the other functions to split a string into...
 // smaller strings and returns that array of arrays
-char	**ft_split_quot_ex(char const *s, char c)
+char	**ft_split_quot_inc(char *s)
 {
 	int		count;
 	char	**result;
 
 	if (s == NULL)
 		return (NULL);
-	count = get_sets(s, c);
+	count = get_sets(s);
 	if (count < 1)
 		return (NULL);
-	result = (char **)malloc((count + 1) * sizeof(char *));
-	count = ft_splitter(s, c, result);
+	result = (char **)malloc((count + 1) * sizeof(int *));
+	count = ft_splitter(s, result);
 	if (count < 0)
 	{
-		count = 0;
-		while (result[count] != NULL)
-		{
-			free(result[count]);
-			count++;
-		}
-		free(result);
-		perror("Error splitting input");
+		ft_nullb(result);
 		return (NULL);
 	}
 	return (result);

@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_special_cmd.c                                   :+:      :+:    :+:   */
+/*   ft_skip_not_spaces.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 17:59:55 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/13 17:52:48 by sikunne          ###   ########.fr       */
+/*   Created: 2025/02/12 18:32:26 by sikunne           #+#    #+#             */
+/*   Updated: 2025/02/13 17:14:09 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// runs builtin commands like exit, cd, unset
-// returns 0-255 if programm should close with that code
-// returns -1 if programm should continue
-int	ft_special_cmd(char *inp)
+// gives back index of next 'space' or \0
+void	ft_skip_not_spaces(int *i, char *str)
 {
-	int	i;
-
-	i = 0;
-	ft_skip_spaces(&i, inp);
-	if (ft_strncmp(&inp[i], "exit", 4) == 0)
-		return (0);
-	return (-1);
+	while (str[*i] != ' ' && str[*i] != '\n' && str[*i] != '\t' \
+		&& str[*i] != '\v' && str[*i] != '\f' && str[*i] != '\r' \
+		&& str[*i] != '\0')
+		(*i)++;
+	return ;
 }
