@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:52:25 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/13 18:27:28 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/14 17:15:09 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,27 @@
 // return values: -1 for continue 0-255 for  
 // certain return values should stop the programm and return that value
 // -1 if continue
+// 0-255 for stop the working with the line and free it
+// 1000-1255 for stop whole programm
 // handles a whole input string, breaks it down into chunks
 // and then does all chunks in a specific order
 int	ft_handle_input(char *inp, char *envp[])
 {
-	char **argv;
+	char **tokens;
 	int	i;
 	int status;
 
-	argv = ft_split_quot_inc(inp);
-	if (argv == NULL)
+	tokens = ft_tokenization(inp);
+	if (tokens == NULL)
 		return (1);
 	i = -1;
-	while (argv[++i] != NULL)
-		printf("{%s}\n", argv[i]);
+	while (tokens[++i] != NULL)
+		printf("{%s}\n", tokens[i]);
 	i = 0;
-	status = ft_handle_chunks(argv, &i, envp);
-	ft_nullb(argv);
+	status = -1;
+	while (tokens[i] != NULL && status == -1)
+		status = ft_handle_chunks(tokens, &i, envp);
+	ft_nullb(tokens);
 	return (status);
 }
 

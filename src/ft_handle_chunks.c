@@ -6,48 +6,34 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:48:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/13 18:29:32 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/14 17:18:14 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// starts handling all the args in a certain order
-// moves from arg[i] to the next pipe argument or end
-// sets <ri> (real i) to the value of whatever arg is after the pipe
-// or the arg that is null
-// arguments are checked for Argument substitution
-// then for piping
-// then for commands
-int	ft_handle_chunks(char *arg[], int *ri, char *envp[])
+// called on each token to run it
+// return values:
+// -1 for continue doing the line
+// 0-255 for stop the current the line
+// 1000-1255 for stop whole programm
+int	ft_handle_chunks(char *arg[], int *i, char *envp[])
 {
-	int	i;
 	int	special;
 
-	i = (*ri) - 1;
-	while (arg[++i] != NULL)
-	{//find variable assignement
-		if (1 == 2)
-		{//variable assignement found -> start going trough again and replace the variable with its value
-			printf("how?\n");
-		}
+	special = ft_check_special(arg[*i]);
+	if (special == 1)
+	{
+		printf("Special Command\n");
+		(*i)++;
+		// Not working with pos properly right now
+		return (ft_special_cmd(arg[(*i) -1]));
 	}
-	i = (*ri) - 1;
-	while (arg[++i] != NULL)
-	{//run commands
-		special = ft_check_special(arg[i]);
-		if (special == 1)
-		{
-			printf("Special Command\n");
-			return (ft_special_cmd(arg[i]));
-		}
-		else
-		{
-			printf("Regular command\n");
-			return (ft_regular_cmd(arg[i], envp));
-		}
+	else
+	{
+		printf("Regular command\n");
+		return (ft_regular_cmd(arg, i, envp));
 	}
-	*ri = i;
 	return (-1);
 }
 

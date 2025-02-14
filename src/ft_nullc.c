@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_special_cmd.c                                   :+:      :+:    :+:   */
+/*   ft_nullc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 17:59:55 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/14 17:16:23 by sikunne          ###   ########.fr       */
+/*   Created: 2025/02/14 16:46:08 by sikunne           #+#    #+#             */
+/*   Updated: 2025/02/14 16:53:57 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// runs builtin commands like exit, cd, unset
-// returns 0-255 if programm should close with that code
-// returns -1 if programm should continue
-int	ft_special_cmd(char *inp)
+// Are you sure you dont want to use ft_nullb?
+// frees and nulls a pointer to a pointer,
+// without freeing its contents
+void	ft_nullc(char **ptr)
 {
-	int	i;
-
-	i = 0;
-	ft_skip_spaces(&i, inp);
-	if (ft_strncmp(&inp[i], "exit", 4) == 0)
-		return (1000);
-	return (-1);
+	if (ptr != NULL)
+	{
+		free(ptr);
+		ptr = NULL;
+	}
 }
+

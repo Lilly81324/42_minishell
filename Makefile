@@ -16,8 +16,8 @@ ft_loop.c \
 ft_handle_input.c \
 ft_null.c \
 ft_nullb.c \
+ft_nullc.c \
 ft_prepare_argv.c \
-ft_split_quot_ex.c \
 ft_split_quot_inc.c \
 ft_prepare_cmd.c \
 ft_special_cmd.c \
@@ -27,6 +27,10 @@ ft_skip_spaces.c \
 ft_skip_not_spaces.c \
 ft_c_in_s.c \
 ft_handle_chunks.c \
+ft_token_count.c \
+ft_token_extractor.c \
+ft_tokenization.c \
+ft_is_delimiter.c \
 )
 SRC_MAIN = $(SRC_DIR)aa_main.c
 OBJ_MAIN = $(OBJ_DIR)aa_main.o
