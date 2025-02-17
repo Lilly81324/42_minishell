@@ -69,6 +69,7 @@ clean:
 
 fclean: clean
 	make -C $(LIBFT_DIR) fclean
+	rm -rf $(OBJ_DIR)
 	rm -f $(NAME)
 
 show:
