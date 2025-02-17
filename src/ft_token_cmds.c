@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:26:44 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/17 17:02:20 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/17 17:53:02 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_token_cmds(char *arg[], int i, char *envp[])
 		else
 		{
 			if (ft_check_special(arg[i]) == 1)
-				status = ft_special_cmd(arg, &i);
+				status = ft_special_cmd(arg, &i, envp);
 			else
 				status = ft_regular_cmd(arg, &i, envp);
 			if (status != -1)

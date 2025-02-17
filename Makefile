@@ -40,6 +40,7 @@ ft_reset_std.c \
 ft_stdin_to_infile.c \
 ft_stdout_to_pipe.c \
 ft_stdin_to_pipe.c \
+ft_builtin_env.c \
 )
 SRC_MAIN = $(SRC_DIR)aa_main.c
 OBJ_MAIN = $(OBJ_DIR)aa_main.o

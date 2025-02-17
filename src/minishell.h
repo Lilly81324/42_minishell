@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/17 17:38:59 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/17 17:56:20 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_nullb(char **ptr);
 void	ft_nullc(char **ptr);
 char	**ft_prepare_argv(char **arg, int *pos);
 int		ft_regular_cmd(char **arg, int *pos, char *envp[]);
-int		ft_special_cmd(char **tokens, int *pos);
+int		ft_special_cmd(char **tokens, int *pos, char *envp[]);
 int		ft_check_special(char *inp);
 void	ft_skip_spaces(int *i, char *str);
 int		ft_c_in_s(char *big, char little);
@@ -60,6 +60,7 @@ void	ft_reset_std(int *std);
 int		ft_stdin_to_infile(char *filename);
 int		ft_stdout_to_pipe(void);
 int		ft_stdin_to_pipe(int r_end);
+int		ft_builtin_env(int *pos, char *envp[]);
 
 // Builtins such as cd, unset or export run in parent process
 // otherwise every other command runs as child

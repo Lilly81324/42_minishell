@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aa_main.c                                          :+:      :+:    :+:   */
+/*   ft_builtin_env.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/17 18:01:18 by sikunne          ###   ########.fr       */
+/*   Created: 2025/02/17 17:53:11 by sikunne           #+#    #+#             */
+/*   Updated: 2025/02/17 17:59:43 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char *argv[], char *envp[])
+int	ft_builtin_env(int *pos, char *envp[])
 {
-	if (argc == 2)
-		printf("%s", argv[1]);
-	return (ft_loop(envp));
-}
+	int	i;
 
-// TODO:
-// Add working history
-// Signaling
-// Exit Codes
-// Argument substitution
-// Argument declaration?
-// >> and <<
-// piping
-// Ctrl+C makes newline
-// builtins:
-// echo with -n flag
-// cd
-// pwd
-// export
-// unset
+	i = -1;
+	while (envp[++i] != NULL)
+		printf("%s\n", envp[i]);
+	(*pos)++;
+	return (-1);
+}// WARNING env just returns its own env variable
+// it does not look exactly like what you would get in bash

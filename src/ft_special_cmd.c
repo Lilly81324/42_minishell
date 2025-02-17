@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:59:55 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/17 17:27:59 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/17 17:55:42 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // runs builtin commands like exit, cd, unset
 // returns 0-255 if programm should close with that code
 // returns -1 if programm should continue
-int	ft_special_cmd(char **tokens, int *pos)
+int	ft_special_cmd(char **tokens, int *pos, char *envp[])
 {
 	int	i;
 
@@ -23,6 +23,8 @@ int	ft_special_cmd(char **tokens, int *pos)
 	ft_skip_spaces(&i, tokens[*pos]);
 	if (ft_strncmp(&tokens[*pos][i], "exit", 4) == 0)
 		return (1000);
+	else if (ft_strncmp(&tokens[*pos][i], "env", 3) == 0)
+		return (ft_builtin_env(pos, envp));
 	(*pos)++;
 	return (-1);
 }
