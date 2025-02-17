@@ -6,11 +6,11 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 14:48:00 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/14 14:54:30 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/17 17:36:43 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
 int	ft_is_delimiter(char *str)
 {

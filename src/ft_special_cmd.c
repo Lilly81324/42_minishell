@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:59:55 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/17 15:46:13 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/17 17:27:59 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	ft_special_cmd(char **tokens, int *pos)
 {
 	int	i;
 
-	printf("Special Command\n");
 	i = 0;
 	ft_skip_spaces(&i, tokens[*pos]);
 	if (ft_strncmp(&tokens[*pos][i], "exit", 4) == 0)

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:47:59 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/17 16:55:32 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/17 17:40:18 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	ft_reset_std(int *std)
 {
 	if (std == NULL)
-		return;
+		return ;
 	close(STDIN_FILENO);
 	close(STDOUT_FILENO);
 	close(STDERR_FILENO);

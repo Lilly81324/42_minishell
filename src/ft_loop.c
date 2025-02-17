@@ -6,12 +6,13 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:46:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/14 17:18:55 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/17 17:35:36 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// Central loop called when input is given
 int	ft_loop(char *envp[])
 {
 	char	*input;

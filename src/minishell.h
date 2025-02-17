@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/17 17:11:56 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/17 17:38:59 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,12 @@ int		ft_stdin_to_infile(char *filename);
 int		ft_stdout_to_pipe(void);
 int		ft_stdin_to_pipe(int r_end);
 
-// Variables in double quotes have to be interpreted,
-// Things in single quotes are ALWAYS taken literally
-// Dont need to add \ handling
-
-// Right now the first pair of quotes is taken away 
-// and the rest is given to execve
-
 // Builtins such as cd, unset or export run in parent process
 // otherwise every other command runs as child
 
 // Every chunk like redirection has different amount of blocks it needs,
 // The current position needst to be increased accordingly
+
+// I used continue instead of return, are we allowed to use that?
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 15:09:11 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/17 17:00:55 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/17 17:29:45 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	**ft_copy_argv(char **o_argv, int start, int len)
 
 	n_argv = (char **)malloc((len + 1) * sizeof (char *));
 	i = -1;
-	while(++i < len)
+	while (++i < len)
 		n_argv[i] = o_argv[i + start];
 	n_argv[i] = NULL;
 	return (n_argv);
