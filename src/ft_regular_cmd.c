@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:50:39 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/14 17:12:52 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/17 17:00:45 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,13 @@ int	ft_regular_cmd(char **arg, int *pos, char *envp[])
 	char	**argv;
 	int		len;
 
+	printf("Regular command\n");
 	path = ft_get_path(envp, arg[*pos]);
 	if (path == NULL)
 	{
 		printf(INVALID_COMMAND);
 		return (1);
 	}
-	else
-		printf("Command found: %s\n", path);
 	argv = ft_prepare_argv(arg, pos);
 	pid = fork();
 	if (pid < 0)

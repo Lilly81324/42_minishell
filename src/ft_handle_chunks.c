@@ -6,41 +6,32 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:48:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/14 17:18:14 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/17 17:20:27 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// called on each token to run it
+// called at start of chunk on first token
+// first runs redirection for all tokens
+// then runs commands for all tokens
+// then skips to end of chunk
 // return values:
+// INT_MIN-(-2)for pipe fd, will continue
 // -1 for continue doing the line
 // 0-255 for stop the current the line
 // 1000-1255 for stop whole programm
 int	ft_handle_chunks(char *arg[], int *i, char *envp[])
 {
-	int	special;
+	int	status;
+	int r_end;
 
-	special = ft_check_special(arg[*i]);
-	if (special == 1)
-	{
-		printf("Special Command\n");
-		(*i)++;
-		// Not working with pos properly right now
-		return (ft_special_cmd(arg[(*i) -1]));
-	}
-	else
-	{
-		printf("Regular command\n");
-		return (ft_regular_cmd(arg, i, envp));
-	}
+	status = ft_token_redirect(arg, *i, envp);
+	if (status > -1)
+		return (status);
+	status = ft_token_cmds(arg, *i, envp);
+	if (status > -1)
+		return (status);;
+	ft_token_skip_chunk(arg, i);
 	return (-1);
 }
-
-	// int	special;
-	// while
-	// special = ft_check_special(arg[0]);
-	// if (special == 1)
-	// 	return (ft_special_cmd(arg[0]));
-	// else
-	// 	return (ft_regular_cmd(arg[0], envp));

@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_redirection.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/14 13:58:16 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/17 16:45:08 by sikunne          ###   ########.fr       */
+/*   Created: 2025/02/14 17:52:10 by sikunne           #+#    #+#             */
+/*   Updated: 2025/02/17 17:04:24 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	func(int *std)
+// handles redirections and increases the position accordingly
+int	ft_redirection(char **argv, int pos, char *envp[])
 {
-	std[0] = 2;
-	std[1] = 3;
-	std[2] = 5;
-}
-
-int	main(int argc, char *argv[])
-{
-	int		std[3];
-
-	func(std);
-	printf("%i %i %i\n", std[0], std[1], std[2]);
-	return (0);
+	if (argv[pos][0] == '>' && argv[pos][1] == '\0')
+		ft_stdout_to_outfile(argv[pos + 1], envp);
+	else if (argv[pos][0] == '<' && argv[pos][1] == '\0')
+		ft_stdin_to_infile(argv[pos + 1]);
+	return (-1);
 }

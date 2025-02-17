@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:40:45 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/14 16:38:01 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/17 17:00:12 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ char	**ft_tokenization(char *s)
 	if (s == NULL)
 		return (NULL);
 	count = ft_token_count(s);
-	printf("%i Tokens\n", count);
 	if (count < 1)
 		return (NULL);
 	result = (char **)malloc((count + 1) * sizeof(int *));

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/14 17:31:38 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/17 17:11:56 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_nullb(char **ptr);
 void	ft_nullc(char **ptr);
 char	**ft_prepare_argv(char **arg, int *pos);
 int		ft_regular_cmd(char **arg, int *pos, char *envp[]);
-int		ft_special_cmd(char *inp);
+int		ft_special_cmd(char **tokens, int *pos);
 int		ft_check_special(char *inp);
 void	ft_skip_spaces(int *i, char *str);
 int		ft_c_in_s(char *big, char little);
@@ -48,6 +48,18 @@ int		ft_is_delimiter(char *str);
 int		ft_token_count(char *s);
 void	ft_token_extractor(char *s, char **result);
 char	**ft_tokenization(char *s);
+int		ft_redirection(char **argv, int pos, char *envp[]);
+int		ft_stdout_to_outfile(char *filename, char *envp[]);
+int		ft_cooler_open(char *filename);
+int		ft_token_redirect(char *arg[], int i, char *envp[]);
+int		ft_token_cmds(char *arg[], int i, char *envp[]);
+void	ft_token_skip_chunk(char *arg[], int *i);
+void	ft_print_tokens(char **tokens);
+void	ft_dup_std(int *std);
+void	ft_reset_std(int *std);
+int		ft_stdin_to_infile(char *filename);
+int		ft_stdout_to_pipe(void);
+int		ft_stdin_to_pipe(int r_end);
 
 // Variables in double quotes have to be interpreted,
 // Things in single quotes are ALWAYS taken literally
