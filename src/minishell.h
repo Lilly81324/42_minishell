@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/18 16:02:41 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:08:10 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 // example:
 // PROMPT="lilshell:"	POST_PROMPT=">"
 // lilshell:/home/sikunne>
-# define PROMPT "lilshell>"
+# define PROMPT "[lilshell]>"
 # define POST_PROMPT "> "
 
 // Utility-------------------------------------------------
@@ -83,7 +83,6 @@ int		ft_regular_cmd(char **arg, int *pos);
 char	**ft_prepare_argv(char **arg, int *pos);
 // End of executing input
 void	ft_token_skip_chunk(char *arg[], int *i);
-
 
 // Builtins such as cd, unset or export run in parent process
 // otherwise every other command runs as child

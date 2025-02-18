@@ -48,37 +48,48 @@ OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))
 
 NAME = minishell
 
+# RULES
+
+# Compile programm
 all: $(NAME)
 
+# For each required .o file compile the corresponding .c file
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+# Compile the programm like this
 $(NAME): $(OBJ_FILES) $(LIBFT_LIB) $(OBJ_MAIN)
 	$(CC) $(CFLAGS) $(INCLUDES) $(OBJ_FILES) $(OBJ_MAIN) $(LIBFT_LIB) -o $(NAME)
 
+# Compile the libft
 $(LIBFT_LIB):
 	make -C $(LIBFT_DIR)
 
-# Make directory for objects
+# Make directory for object files
 $(OBJ_DIR):
 	mkdir obj
 
+# Remove object files
 clean:
 	make -C $(LIBFT_DIR) clean
 	rm -rf $(OBJ_FILES) $(OBJ_MAIN)
 
+# Remove object files, libraries and programms
 fclean: clean
 	make -C $(LIBFT_DIR) fclean
 	rm -rf $(OBJ_DIR)
 	rm -f $(NAME)
 
+# Print the required .o and given .c files
 show:
 	echo $(SRC_FILES)
 	echo $(OBJ_FILES)
 
+# Basic execution
 run:
 	valgrind --leak-check=full ./$(NAME)
 
+# Redo programm
 re: fclean all
 
-PHONY: all clean fclean run re
+PHONY: all clean fclean show run re

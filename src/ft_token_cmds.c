@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:26:44 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/18 15:50:27 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:08:56 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	ft_token_cmds(char *arg[], int i, char *envp[])
 			i += 2;
 		else
 		{
-			printf("Doing %s\n", arg[i]);
 			if (ft_check_special(arg[i]) == 1)
 				status = ft_special_cmd(arg, &i, envp);
 			else
