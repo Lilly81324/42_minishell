@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:00:27 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/18 17:26:11 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/18 18:30:44 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // ..
 // if input has whitespaces -> error, doesnt exist
 
-// wrongfully doesnt split "../miini"
+// ERROR wrongfully doesnt split "../miini" into two
 int	ft_builtin_cd(char **tokens, int *pos, char *envp[])
 {
 	char	*cwd;
