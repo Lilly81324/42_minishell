@@ -6,13 +6,13 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:47:59 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/17 17:40:18 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:48:07 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Resets standard streams
+// Resets standard streams based off std
 void	ft_reset_std(int *std)
 {
 	if (std == NULL)

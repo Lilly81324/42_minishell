@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:48:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/17 17:36:09 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:52:52 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_handle_chunks(char *arg[], int *i, char *envp[])
 {
 	int	status;
 
-	status = ft_token_redirect(arg, *i, envp);
+	status = ft_token_redirect(arg, *i);
 	if (status > -1)
 		return (status);
 	status = ft_token_cmds(arg, *i, envp);

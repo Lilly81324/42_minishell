@@ -6,14 +6,14 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:14:22 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/17 15:09:36 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:06:20 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 // creates a file via touch wherever the name places it
-static void	ft_touch_file(char *name, char *envp[])
+static void	ft_touch_file(char *name)
 {
 	char	*path;
 	char	*argv[3];
@@ -21,7 +21,7 @@ static void	ft_touch_file(char *name, char *envp[])
 	pid_t	pid;
 
 	i = -1;
-	path = ft_get_path(envp, "touch");
+	path = ft_get_path("touch");
 	argv[0] = "touch";
 	argv[1] = name;
 	argv[2] = NULL;
@@ -38,7 +38,7 @@ static void	ft_touch_file(char *name, char *envp[])
 }
 
 // creates a file via touch wherever the name places it
-static void	ft_trunc_file(char *name, char *envp[], char *size)
+static void	ft_trunc_file(char *name, char *size)
 {
 	char	*path;
 	char	*argv[5];
@@ -46,7 +46,7 @@ static void	ft_trunc_file(char *name, char *envp[], char *size)
 	pid_t	pid;
 
 	i = -1;
-	path = ft_get_path(envp, "truncate");
+	path = ft_get_path("truncate");
 	argv[0] = "truncate";
 	argv[1] = "-s";
 	argv[2] = size;
@@ -69,18 +69,18 @@ static void	ft_trunc_file(char *name, char *envp[], char *size)
 // if no permission to write to file return -1
 // always truncate file to 0 bytes
 // nominally return 0
-static int	ft_check_file(char *name, char *envp[])
+static int	ft_check_file(char *name)
 {
 	int		exists;
 	int		acces;
 
 	exists = access(name, F_OK);
 	if (exists != 0)
-		ft_touch_file(name, envp);
+		ft_touch_file(name);
 	acces = access(name, W_OK);
 	if (acces == 0)
 	{
-		ft_trunc_file(name, envp, "0");
+		ft_trunc_file(name, "0");
 		return (0);
 	}
 	perror("No Permission to open outfile");
@@ -91,11 +91,11 @@ static int	ft_check_file(char *name, char *envp[])
 // redirects STDOUT to that file
 // closes the file itself directly
 // returns -1 if error
-int	ft_stdout_to_outfile(char *filename, char *envp[])
+int	ft_stdout_to_outfile(char *filename)
 {
 	int	outfile;
 
-	if (ft_check_file(filename, envp) != 0)
+	if (ft_check_file(filename) != 0)
 		return (-1);
 	outfile = ft_cooler_open(filename);
 	if (outfile < 0)

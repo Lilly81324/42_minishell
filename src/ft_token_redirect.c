@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:24:50 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/17 17:23:41 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:52:24 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 // If it finds redirector then handle redirection to/from file in next token
 // Then skip to the next next token, thereby skipping redirector and filename
 // Handle_chunks return value scheme
-int	ft_token_redirect(char *arg[], int i, char *envp[])
+int	ft_token_redirect(char *arg[], int i)
 {
 	int	status;
 
@@ -26,7 +26,7 @@ int	ft_token_redirect(char *arg[], int i, char *envp[])
 	{
 		if (ft_is_delimiter(arg[i]) == 1)
 		{
-			status = ft_redirection(arg, i, envp);
+			status = ft_redirection(arg, i);
 			if (status != -1)
 				return (status);
 			i += 2;

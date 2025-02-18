@@ -6,12 +6,13 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:53:11 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/17 17:59:43 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:38:56 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// prints env variable
 int	ft_builtin_env(int *pos, char *envp[])
 {
 	int	i;

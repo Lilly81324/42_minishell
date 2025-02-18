@@ -6,12 +6,17 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:26:44 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/17 17:53:02 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:50:27 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// Called at index <i> of first element of block <arg>
+// Moves through all elements, ignoring everything that is a redirector
+// Moves until it finds NULL or a non-redirector/command
+// If it finds command then check wether its builtin
+// then run the command
 int	ft_token_cmds(char *arg[], int i, char *envp[])
 {
 	int	status;
@@ -22,10 +27,11 @@ int	ft_token_cmds(char *arg[], int i, char *envp[])
 			i += 2;
 		else
 		{
+			printf("Doing %s\n", arg[i]);
 			if (ft_check_special(arg[i]) == 1)
 				status = ft_special_cmd(arg, &i, envp);
 			else
-				status = ft_regular_cmd(arg, &i, envp);
+				status = ft_regular_cmd(arg, &i);
 			if (status != -1)
 				return (status);
 		}

@@ -6,27 +6,11 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:23:06 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/12 18:26:54 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:36:41 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// returns a string consisting of the PATH enviroment 
-// variable given to the programm
-static char	*ft_envp_path(char *const envp[])
-{
-	int	i;
-
-	i = 0;
-	while (envp[i] != NULL)
-	{
-		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
-			return (envp[i] + 5);
-		i++;
-	}
-	return (NULL);
-}
 
 // creates a name by writing <path + / + name>
 // so <usr/bin/ls> into a string and returning it for use
@@ -34,8 +18,8 @@ static char	*ft_make_name(char *path, char *name)
 {
 	char	*full_path;
 
-	full_path = (char *)calloc((ft_strlen(path) + ft_strlen(name) \
-				+ 2), sizeof(char));
+	full_path = (char *)malloc((ft_strlen(path) + ft_strlen(name) \
+				+ 2) * sizeof(char));
 	ft_strlcpy(full_path, path, ft_strlen(path) + 1);
 	ft_strlcpy(full_path + ft_strlen(full_path), "/", 2);
 	ft_strlcpy(full_path + ft_strlen(full_path), name, ft_strlen(name) + 1);
@@ -79,7 +63,7 @@ static char	*ft_check_access(char **paths, char *name)
 // Tries to find the path of the binary  of the given command
 // from the enviroment pointer (PATHS) and returns
 // the path with the file, so /usr/bin/ls
-char	*ft_get_path(char **envp, char *cmd)
+char	*ft_get_path(char *cmd)
 {
 	char	**paths;
 	char	*path;
@@ -87,7 +71,7 @@ char	*ft_get_path(char **envp, char *cmd)
 	if (cmd == NULL || cmd[0] == '\0')
 		return (NULL);
 	cmd = ft_space_bef(cmd);
-	paths = ft_split(ft_envp_path(envp), ':');
+	paths = ft_split(getenv("PATH"), ':');
 	path = ft_check_access(paths, cmd);
 	ft_null(cmd);
 	ft_nullb(paths);

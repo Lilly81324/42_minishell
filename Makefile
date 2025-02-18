@@ -9,38 +9,38 @@ SRC_DIR = ./src/
 OBJ_DIR = ./obj/
 
 SRC_FILES = $(addprefix $(SRC_DIR), \
-ft_get_path.c \
-ft_space_bef.c \
-ft_get_envp_value.c \
-ft_loop.c \
-ft_handle_input.c \
-ft_null.c \
-ft_nullb.c \
-ft_nullc.c \
-ft_prepare_argv.c \
-ft_special_cmd.c \
-ft_regular_cmd.c \
-ft_check_special.c \
-ft_skip_spaces.c \
-ft_c_in_s.c \
-ft_handle_chunks.c \
-ft_is_delimiter.c \
-ft_token_count.c \
-ft_token_extractor.c \
-ft_tokenization.c \
-ft_redirection.c \
-ft_stdout_to_outfile.c \
-ft_cooler_open.c \
-ft_token_redirect.c \
-ft_token_cmds.c \
-ft_token_skip_chunk.c \
-ft_print_tokens.c \
-ft_dup_std.c \
-ft_reset_std.c \
-ft_stdin_to_infile.c \
-ft_stdout_to_pipe.c \
-ft_stdin_to_pipe.c \
-ft_builtin_env.c \
+	ft_get_path.c \
+	ft_space_bef.c \
+	ft_loop.c \
+	ft_handle_input.c \
+	ft_null.c \
+	ft_nullb.c \
+	ft_nullc.c \
+	ft_prepare_argv.c \
+	ft_special_cmd.c \
+	ft_regular_cmd.c \
+	ft_check_special.c \
+	ft_skip_spaces.c \
+	ft_c_in_s.c \
+	ft_handle_chunks.c \
+	ft_is_delimiter.c \
+	ft_token_count.c \
+	ft_token_extractor.c \
+	ft_tokenization.c \
+	ft_redirection.c \
+	ft_stdout_to_outfile.c \
+	ft_cooler_open.c \
+	ft_token_redirect.c \
+	ft_token_cmds.c \
+	ft_token_skip_chunk.c \
+	ft_print_tokens.c \
+	ft_dup_std.c \
+	ft_reset_std.c \
+	ft_stdin_to_infile.c \
+	ft_stdout_to_pipe.c \
+	ft_stdin_to_pipe.c \
+	ft_builtin_env.c \
+	ft_make_prompt.c \
 )
 SRC_MAIN = $(SRC_DIR)aa_main.c
 OBJ_MAIN = $(OBJ_DIR)aa_main.o

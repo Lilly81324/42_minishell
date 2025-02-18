@@ -6,12 +6,14 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:08:21 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/17 17:50:39 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:40:04 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// returns 1 if the text in <hay> starting at <pos>
+// is equal to the <len> characters of <needle>
 static int	ft_text_check(char *hay, const char *needle, int len, int pos)
 {
 	if (ft_strncmp(&hay[pos], needle, len) == 0)

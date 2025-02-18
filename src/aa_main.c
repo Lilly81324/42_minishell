@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/17 18:01:18 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:38:36 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	main(int argc, char *argv[], char *envp[])
 }
 
 // TODO:
-// Add working history
 // Signaling
 // Exit Codes
 // Argument substitution
