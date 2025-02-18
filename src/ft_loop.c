@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:46:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/18 15:01:14 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:14:33 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_loop(char *envp[])
 		if (status >= 1000)
 		{
 			clear_history();
-			return (status);
+			return (status - 1000);
 		}
 	}
 	return (0);

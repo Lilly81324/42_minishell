@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aa_main.c                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/18 16:53:27 by sikunne          ###   ########.fr       */
+/*   Created: 2025/02/18 17:10:22 by sikunne           #+#    #+#             */
+/*   Updated: 2025/02/18 17:17:47 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "test.h"
 
-int	main(int argc, char *argv[], char *envp[])
+int	main(int argc, char **argv)
 {
-	if (argc == 2)
-		printf("%s", argv[1]);
-	return (ft_loop(envp));
-}
+	char	**tokens;
+	int		i;
 
-// TODO:
-// Signaling
-// Exit Codes
-// Argument substitution
-// Argument declaration?
-// >> and <<
-// piping
-// Ctrl+C makes newline
-// builtins:
-// echo with -n flag
-// cd
-// export
-// unset
+	if (argc == 1)
+		return (0);
+	i = -1;
+	tokens = ft_split_quot_inc(argv[1], '/');
+	while (tokens[++i] != NULL)
+	{
+		printf("%s\n", tokens[i]);
+		free(tokens[i]);
+	}
+	free(tokens);
+	return (0);
+}

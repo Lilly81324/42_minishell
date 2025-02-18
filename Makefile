@@ -41,6 +41,9 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_stdin_to_pipe.c \
 	ft_builtin_env.c \
 	ft_make_prompt.c \
+	ft_builtin_pwd.c \
+	ft_split_quot_ex.c \
+	ft_builtin_cd.c \
 )
 SRC_MAIN = $(SRC_DIR)aa_main.c
 OBJ_MAIN = $(OBJ_DIR)aa_main.o

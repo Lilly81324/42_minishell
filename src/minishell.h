@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/18 16:08:10 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/18 17:23:00 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <limits.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/wait.h>
@@ -25,6 +26,7 @@
 // Error messages
 # define INVALID_COMMAND "lilshell: Not a valid command\n"
 # define FORK_ERROR "lilshell: Error creating fork\n"
+# define PWD_NONEXISTENT_ERROR "lilshell: No pwd existing\n"
 
 // Used in ft_tokenization to know what to skip over
 # define SPACES " \n\t\v\f\r"
@@ -48,6 +50,7 @@ void	ft_skip_spaces(int *i, char *str);
 int		ft_c_in_s(char *big, char little);
 int		ft_cooler_open(char *filename);
 int		ft_is_delimiter(char *str);
+char	**ft_split_quot_ex(char const *s, char c);
 // Redirection
 int		ft_stdout_to_outfile(char *filename);
 int		ft_stdout_to_pipe(void);
@@ -78,6 +81,8 @@ int		ft_token_cmds(char *arg[], int i, char *envp[]);
 int		ft_check_special(char *inp);
 int		ft_special_cmd(char **tokens, int *pos, char *envp[]);
 int		ft_builtin_env(int *pos, char *envp[]);
+int		ft_builtin_pwd(int *pos);
+int		ft_builtin_cd(char **tokens, int *pos, char *envp[]);
 // Basic command or rest
 int		ft_regular_cmd(char **arg, int *pos);
 char	**ft_prepare_argv(char **arg, int *pos);

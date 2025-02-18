@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aa_main.c                                          :+:      :+:    :+:   */
+/*   test.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/18 16:53:27 by sikunne          ###   ########.fr       */
+/*   Created: 2025/02/18 17:11:57 by sikunne           #+#    #+#             */
+/*   Updated: 2025/02/18 17:12:46 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef TEST_H
+# define TEST_H
 
-int	main(int argc, char *argv[], char *envp[])
-{
-	if (argc == 2)
-		printf("%s", argv[1]);
-	return (ft_loop(envp));
-}
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <limits.h>
 
-// TODO:
-// Signaling
-// Exit Codes
-// Argument substitution
-// Argument declaration?
-// >> and <<
-// piping
-// Ctrl+C makes newline
-// builtins:
-// echo with -n flag
-// cd
-// export
-// unset
+char	**ft_split_quot_ex(char const *s, char c);
+char	**ft_split_quot_inc(char const *s, char c);
+
+#endif

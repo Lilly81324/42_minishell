@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:08:21 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/18 15:40:04 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:57:14 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ int	ft_check_special(char *inp)
 	if (ft_text_check(inp, "exit", 4, i) == 1)
 		return (1);
 	else if (ft_text_check(inp, "env", 3, i) == 1)
+		return (1);
+	else if (ft_text_check(inp, "pwd", 3, i) == 1)
+		return (1);
+	else if (ft_text_check(inp, "cd", 2, i) == 1)
 		return (1);
 	return (0);
 }

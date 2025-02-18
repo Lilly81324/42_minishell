@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:59:55 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/17 17:55:42 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:58:22 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ int	ft_special_cmd(char **tokens, int *pos, char *envp[])
 		return (1000);
 	else if (ft_strncmp(&tokens[*pos][i], "env", 3) == 0)
 		return (ft_builtin_env(pos, envp));
+	else if (ft_strncmp(&tokens[*pos][i], "pwd", 3) == 0)
+		return (ft_builtin_pwd(pos));
+	else if (ft_strncmp(&tokens[*pos][i], "cd", 2) == 0)
+		return (ft_builtin_cd(tokens, pos, envp));
 	(*pos)++;
 	return (-1);
 }
