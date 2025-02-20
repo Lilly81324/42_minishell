@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:00:27 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/20 16:58:34 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/20 17:44:59 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,5 @@ int	ft_builtin_cd(char **tokens, int *pos, char *envp[])
 	if (envp == NULL)
 		printf("error");
 	return (status);
-}
+}// Still needs
+// to change the pwd env variable

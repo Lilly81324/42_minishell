@@ -6,33 +6,43 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 13:58:16 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/20 14:38:39 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/20 17:36:18 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	func(char *str)
+void	ft_redo_pwd(char ***envp)
 {
-	int	i;
+	int		i;
+	char	*new_str;
 
-	free(str);
-	str = (char *)malloc(10 * sizeof(char));
-	i = -1;
-	while (++i < 9)
-		str[i] = 'b';
-	str[9] = '\0'
+	i = 0;
+	while ((*envp)[i] != NULL && ((*envp)[i][0] != 'P' || (*envp)[i][1] != 'W' || (*envp)[i][2] != 'D'))
+		i++;
+	if ((*envp)[i] == NULL)
+		return ;
+	printf("PWD found at %i\n%s\n", i, (*envp)[i]);
+	new_str = (char *)malloc(4 * (sizeof(char)));
+	new_str[0] = 'A';
+	new_str[1] = 'b';
+	new_str[2] = 'C';
+	new_str[3] = '\0';
+	free((*envp)[i]);
+	(*envp)[i] = new_str;
 }
 
-int	main(int argc, char *argv[])
+int	main(int argc, char *argv[], char *env[])
 {
 	char	*string;
+	char	**new_env;
 
-	string = (char *)malloc(2 * sizeof(char));
-	string[0] = 'a';
-	string[1] = '\0';
-	func(string);
-	printf("%s\n", string);
-	free(string);
+	if (argc == 1 || argv[0] == NULL)
+		return (0);
+	string = getenv("PWD");
+	printf("PWD=%s\n", string);
+	ft_redo_pwd(&env);
+	string = getenv("PWD");
+	printf("PWD=%s\n", string);
 	return (0);
 }

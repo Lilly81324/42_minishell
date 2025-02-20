@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/20 16:52:46 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/20 17:36:26 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,7 @@ void	ft_token_skip_chunk(char *arg[], int *i);
 // The current position needst to be increased accordingly
 
 // I used continue instead of return, are we allowed to use that?
+
+// env -> remove a rule, add a rule
 
 #endif
