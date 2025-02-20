@@ -6,33 +6,11 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:00:27 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/20 15:55:39 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/20 16:24:18 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// Called when instruction is exactly ".." changes cwd to new directory
-// move to end of cwd, then back to the earliest '/' from the back
-// then set a '\0' on that position to mark moving up
-// then actually change directory to that
-// static int	ft_dir_move_up(char *cwd, char **envp)
-// {
-// 	int	len;
-
-// 	len = 0;
-// 	while (cwd[len] != '\0')
-// 		len++;
-// 	while (cwd[len] != '/')
-// 		len--;
-// 	if (len == 0)
-// 		len++;
-// 	cwd[len] = '\0';
-// 	if (envp == NULL)
-// 		return (1000);
-// 	return (-1);
-// }
-
 
 // change directory by reassigning cwd with /<goal> at the end
 // or just <goal> if we are at cwd = "/"
@@ -66,32 +44,27 @@ static int	ft_new_dir(char **cwd, char *goal)
 // Changes directory based off of relative descriptors
 // such as: "../same_dir" or "new_dir" or "../../../../../home"
 // Uses 2d array of tokens divided
-static int	ft_rel_directory(char *target, char **cwd, char **envp)
+static int	ft_rel_directory(char *target, char **envp)
 {
 	int		i;
 	char	**inst;
+	char	*cwd;
 
 	if (envp == NULL)
 		return (9999999);
 	i = -1;
 	inst = ft_split_quot_ex(target, '/');
+	cwd = getcwd(NULL , 0);
 	while (inst[++i] != NULL)
 	{
 		printf("Handling instruction: [%s]\n", inst[i]);
-		ft_new_dir(cwd, inst[i]);
+		ft_new_dir(&cwd, inst[i]);
 	}
-	printf("Final directory to change to is %s\n", *cwd);
+	printf("Final directory to change to is %s\n", cwd);
 	ft_nullb(inst);
-	if (chdir(*cwd) == 0)
-	{
-		printf("Succesfully changed directory\n");
-		return (-1);
-	}
-	else
-	{
-		printf("Failed to change directory\n");
-		return (1);
-	}
+	i = chdir(cwd);
+	ft_null(cwd);
+	return (i);
 }
 
 // continously runs through the <token[*pos]> until it reached the end
@@ -101,20 +74,28 @@ static int	ft_rel_directory(char *target, char **cwd, char **envp)
 // need to add a check for wether the first parth of the input is a /
 int	ft_builtin_cd(char **tokens, int *pos, char *envp[])
 {
-	char	*cwd;
+	int		status;
 
 	(*pos)++;
 	if (ft_is_delimiter(tokens[*pos]) == 1)
 		return (-1);
-	cwd = getcwd(NULL , 0);
 	if (tokens[*pos][0] == '/')
-		printf("Absolute Path\n");
+		status = chdir(tokens[*pos]);
 	else
-		printf("Relative Path\n");
-	ft_rel_directory(tokens[*pos], &cwd, envp);
-	ft_null(cwd);
+		status = ft_rel_directory(tokens[*pos], envp);
+	printf("Status:%i\n", status);
+	if (status == 0)
+	{
+		printf("Succesfully changed directory\n");
+		status = -1;
+	}
+	else
+	{
+		printf("Failed to change directory\n");
+		status = 2;
+	}
+	(*pos)++;
 	if (envp == NULL)
 		printf("error");
-	(*pos)++;
-	return (-1);
+	return (status);
 }
