@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:25:52 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/18 17:23:08 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/20 16:45:58 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	ft_builtin_pwd(int *pos)
 {
 	char	*pwd;
-	
+
 	pwd = getcwd(NULL, 0);
 	(*pos)++;
 	if (pwd == NULL)
