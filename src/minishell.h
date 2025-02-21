@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/20 17:36:26 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/21 20:40:34 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int		ft_c_in_s(char *big, char little);
 int		ft_cooler_open(char *filename);
 int		ft_is_delimiter(char *str);
 char	**ft_split_quot_ex(char const *s, char c);
+int		ft_find_c(char c, char *string);
 // Redirection
 int		ft_stdout_to_outfile(char *filename);
 int		ft_stdout_to_pipe(void);

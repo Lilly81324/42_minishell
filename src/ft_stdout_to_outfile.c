@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:14:22 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/18 15:06:20 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/21 14:16:21 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ static void	ft_touch_file(char *name)
 {
 	char	*path;
 	char	*argv[3];
-	int		i;
 	pid_t	pid;
 
-	i = -1;
 	path = ft_get_path("touch");
 	argv[0] = "touch";
 	argv[1] = name;
@@ -42,10 +40,8 @@ static void	ft_trunc_file(char *name, char *size)
 {
 	char	*path;
 	char	*argv[5];
-	int		i;
 	pid_t	pid;
 
-	i = -1;
 	path = ft_get_path("truncate");
 	argv[0] = "truncate";
 	argv[1] = "-s";
