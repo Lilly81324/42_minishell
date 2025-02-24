@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:26:44 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/18 16:08:56 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/24 15:50:10 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 // Moves until it finds NULL or a non-redirector/command
 // If it finds command then check wether its builtin
 // then run the command
-int	ft_token_cmds(char *arg[], int i, char *envp[])
+int	ft_token_cmds(char *arg[], int i, char ***envp)
 {
 	int	status;
 
@@ -30,7 +30,7 @@ int	ft_token_cmds(char *arg[], int i, char *envp[])
 			if (ft_check_special(arg[i]) == 1)
 				status = ft_special_cmd(arg, &i, envp);
 			else
-				status = ft_regular_cmd(arg, &i);
+				status = ft_regular_cmd(arg, &i, envp);
 			if (status != -1)
 				return (status);
 		}

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:48:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/18 15:52:52 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/24 15:46:09 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 // -1 for continue doing the line
 // 0-255 for stop the current the line
 // 1000-1255 for stop whole programm
-int	ft_handle_chunks(char *arg[], int *i, char *envp[])
+int	ft_handle_chunks(char *arg[], int *i, char ***envp)
 {
 	int	status;
 

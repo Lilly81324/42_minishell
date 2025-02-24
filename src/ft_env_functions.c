@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 13:58:16 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/21 22:17:18 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/24 15:52:04 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // Adds key-value-pair to envp
 // Reassigns the entire <ptr> so that it contains <pair>
-void	ft_add_to_env(char ***ptr, char *pair)
+static void	ft_add_to_env(char ***ptr, char *pair)
 {
 	int		len;
 	char	**new;

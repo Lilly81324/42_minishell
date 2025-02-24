@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:23:13 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/18 14:59:03 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/24 15:57:38 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	ft_write(char *src, char *target, int pos)
 // whatever prompt is saved in PROMPT
 // uses dynamic lengths, so very resilient
 // return values needs to be freed
-char	*ft_make_prompt(void)
+char	*ft_make_prompt(char ***envp)
 {
 	char	*prompt;
 	int		len_pwd;
@@ -38,7 +38,7 @@ char	*ft_make_prompt(void)
 	int		len_post;
 	char	*pwd;
 
-	pwd = getenv("PWD");
+	pwd = ft_get_env(*envp, "PWD");
 	if (pwd == NULL)
 		pwd = "NO_PATH";
 	len_pwd = ft_strlen(pwd);

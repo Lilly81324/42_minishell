@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:50:39 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/18 15:33:15 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/24 15:50:08 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	ft_cleanup(char **arg, char **argv, char *path, int *pos)
 
 // Takes string for command with arguments and execves it
 // ex: "echo -n lel" as input string
-int	ft_regular_cmd(char **arg, int *pos)
+int	ft_regular_cmd(char **arg, int *pos, char ***envp)
 {
 	char	*path;
 	pid_t	pid;
@@ -47,7 +47,7 @@ int	ft_regular_cmd(char **arg, int *pos)
 		return (1);
 	}
 	if (pid == 0)
-		execve(path, argv, NULL);
+		execve(path, argv, *envp);
 	waitpid(pid, NULL, 0);
 	ft_cleanup(arg, argv, path, pos);
 	return (-1);

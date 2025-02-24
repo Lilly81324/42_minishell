@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:00:27 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/20 17:44:59 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/24 15:56:18 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	ft_rel_directory(char *target)
 
 // changes current directory to either an absolute or relative path
 // as defined by the token after <tokens[*pos]>
-int	ft_builtin_cd(char **tokens, int *pos, char *envp[])
+int	ft_builtin_cd(char **tokens, int *pos, char ***envp)
 {
 	int		status;
 
@@ -68,8 +68,7 @@ int	ft_builtin_cd(char **tokens, int *pos, char *envp[])
 		status = 2;
 	}
 	(*pos)++;
-	if (envp == NULL)
-		printf("error");
+	ft_change_env(envp, "PWD=here");
 	return (status);
 }// Still needs
 // to change the pwd env variable
