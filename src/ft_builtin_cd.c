@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:00:27 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/24 16:14:16 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/24 16:16:41 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static int	ft_rel_directory(char *target)
 	len_cwd++;
 	while (--len_cwd > 0)
 		res[len_cwd - 1] = cwd[len_cwd -1];
-	printf("Final directory to change to is %s\n", res);
 	len_goal = chdir(res);
 	ft_null(cwd);
 	ft_null(res);
@@ -47,7 +46,7 @@ static int	ft_rel_directory(char *target)
 
 // Prepares the key-value pair for the envp to update with
 // returns that value
-static char	*ft_prepare_envp_pwd(void)
+static char	*ft_new_envp_pwd(void)
 {
 	char	*cwd;
 	int		len;
@@ -85,16 +84,14 @@ int	ft_builtin_cd(char **tokens, int *pos, char ***envp)
 	else
 		status = ft_rel_directory(tokens[*pos]);
 	if (status == 0)
-	{
 		status = -1;
-	}
 	else
 	{
 		printf(CD_INVALID_PATH, tokens[*pos]);
 		status = 2;
 	}
 	(*pos)++;
-	new_cwd = ft_prepare_envp_pwd();
+	new_cwd = ft_new_envp_pwd();
 	ft_change_env(envp, new_cwd);
 	ft_null(new_cwd);
 	return (status);
