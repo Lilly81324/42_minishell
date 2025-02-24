@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 13:58:16 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/24 15:52:04 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/24 17:57:44 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ char	**ft_copy_env(char **envp)
 		return (NULL);
 	while (envp[len] != NULL)
 		len++;
-	printf("Making new envp of lenght %i\n", len + 1);
 	res = (char **)malloc((len + 1) * sizeof(char *));
 	res[len] = NULL;
 	while (len >= 0)
