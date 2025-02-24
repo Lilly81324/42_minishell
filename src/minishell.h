@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/24 17:12:16 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/24 17:52:53 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int		ft_stdin_to_infile(char *filename);
 int		ft_stdin_to_pipe(int r_end);
 void	ft_dup_std(int *std);
 void	ft_reset_std(int *std);
+int		ft_stdout_to_outfile_append(char *filename);
 // Debugging
 void	ft_print_tokens(char **tokens);
 // Enviroment Functions

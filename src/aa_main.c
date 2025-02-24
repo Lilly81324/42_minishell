@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/24 15:45:36 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/24 17:29:47 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,5 @@ int	main(int argc, char **argv, char **envp)
 // Ctrl+C makes newline
 // builtins:
 // echo with -n flag
-// cd
-// export
-// unset
+// autocomplete of commands
+// maybe remove handling of semicolon

@@ -48,7 +48,9 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_env_functions.c \
 	ft_builtin_export.c \
 	ft_builtin_unset.c \
+	ft_stdout_to_outfile_append.c \
 )
+
 SRC_MAIN = $(SRC_DIR)aa_main.c
 OBJ_MAIN = $(OBJ_DIR)aa_main.o
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))

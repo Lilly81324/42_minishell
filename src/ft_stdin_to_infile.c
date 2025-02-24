@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:13:26 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/17 17:03:33 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/24 17:23:14 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // opens a file by name in RD_ONLY
 // redirects STDIN to that file
 // closes the file itself directly
-// returns -1 if error
+// returns -1 if errorr
 int	ft_stdin_to_infile(char *filename)
 {
 	int	infile;
