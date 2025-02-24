@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/24 17:57:01 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/24 17:59:00 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv, char **envp)
 // Exit Codes
 // Argument substitution
 // Argument declaration?
-// >> and <<
+// <<
 // piping
 // Ctrl+C makes newline
 // builtins:
