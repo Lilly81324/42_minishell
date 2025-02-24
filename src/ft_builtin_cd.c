@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:00:27 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/24 15:56:18 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/24 16:14:16 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,37 @@ static int	ft_rel_directory(char *target)
 	return (len_goal);
 }
 
+// Prepares the key-value pair for the envp to update with
+// returns that value
+static char	*ft_prepare_envp_pwd(void)
+{
+	char	*cwd;
+	int		len;
+	char	*new;
+
+	cwd = getcwd(NULL, 0);
+	if (cwd == NULL)
+		len = 0;
+	else
+		len = ft_strlen(cwd);
+	new = (char *)malloc((len + 5) * sizeof(char));
+	new[0] = 'P';
+	new[1] = 'W';
+	new[2] = 'D';
+	new[3] = '=';
+	new[len + 4] = '\0';
+	while (--len >= 0)
+		new[len + 4] = cwd[len];
+	ft_null(cwd);
+	return (new);
+}
+
 // changes current directory to either an absolute or relative path
 // as defined by the token after <tokens[*pos]>
 int	ft_builtin_cd(char **tokens, int *pos, char ***envp)
 {
 	int		status;
+	char	*new_cwd;
 
 	(*pos)++;
 	if (ft_is_delimiter(tokens[*pos]) == 1)
@@ -68,7 +94,8 @@ int	ft_builtin_cd(char **tokens, int *pos, char ***envp)
 		status = 2;
 	}
 	(*pos)++;
-	ft_change_env(envp, "PWD=here");
+	new_cwd = ft_prepare_envp_pwd();
+	ft_change_env(envp, new_cwd);
+	ft_null(new_cwd);
 	return (status);
-}// Still needs
-// to change the pwd env variable
+}
