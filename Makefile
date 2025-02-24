@@ -46,6 +46,7 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_builtin_cd.c \
 	ft_find_c.c \
 	ft_env_functions.c \
+	ft_builtin_export.c \
 )
 SRC_MAIN = $(SRC_DIR)aa_main.c
 OBJ_MAIN = $(OBJ_DIR)aa_main.o
